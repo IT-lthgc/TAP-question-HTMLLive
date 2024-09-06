@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Question</title>
+    <style>
+        #output {
+            width: 700px;
+            height: 150px;
+            border: 1px solid black;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="output">
+        <iframe id="questionFrame" src="https://divis-test.lrv.lt/meetingpage/questionInProgress?questionTitleMaxLen=179"></iframe>
+    </div>
+
+    <script>
+        function refreshFrame() {
+            const frame = document.getElementById('questionFrame');
+            frame.src = frame.src;
+        }
+
+        setInterval(refreshFrame, 2000);
+    </script>
+</body>
+</html>
