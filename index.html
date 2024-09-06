@@ -20,7 +20,7 @@
     <script>
         async function fetchData() {
             try {
-                const response = await fetch('https://divis-test.lrv.lt/meetingpage/questionInProgress?questionTitleMaxLen=179');
+                const response = await fetch('https://divis-test.lrv.lt/meetingpage/questionInProgress?questionTitleMaxLen=179', { mode: 'no-cors' });
                 const text = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
