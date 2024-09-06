@@ -25,12 +25,18 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
 
-                const meeting = doc.getElementById('meeting').textContent;
-                const questionId = doc.getElementById('questionId').textContent;
-                const questionTitle = doc.getElementById('questionTitle').textContent;
+                const meetingElement = doc.getElementById('meeting');
+                const questionIdElement = doc.getElementById('questionId');
+                const questionTitleElement = doc.getElementById('questionTitle');
 
-                if (meeting && questionId && questionTitle) {
-                    document.getElementById('output').textContent = questionId + ". " + questionTitle;
+                if (meetingElement && questionIdElement && questionTitleElement) {
+                    const meeting = meetingElement.textContent;
+                    const questionId = questionIdElement.textContent;
+                    const questionTitle = questionTitleElement.textContent;
+
+                    if (meeting && questionId && questionTitle) {
+                        document.getElementById('output').textContent = questionId + ". " + questionTitle;
+                    }
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
