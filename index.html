@@ -12,38 +12,25 @@
             padding: 10px;
             box-sizing: border-box;
         }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
-    <div id="output"></div>
+    <div id="output">
+        <iframe id="questionFrame" src="https://divis-test.lrv.lt/meetingpage/questionInProgress?questionTitleMaxLen=179"></iframe>
+    </div>
 
     <script>
-        async function fetchData() {
-            try {
-                const response = await fetch('https://divis-test.lrv.lt/meetingpage/questionInProgress?questionTitleMaxLen=179', { mode: 'no-cors' });
-                const text = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
-
-                const meetingElement = doc.getElementById('meeting');
-                const questionIdElement = doc.getElementById('questionId');
-                const questionTitleElement = doc.getElementById('questionTitle');
-
-                if (meetingElement && questionIdElement && questionTitleElement) {
-                    const meeting = meetingElement.textContent;
-                    const questionId = questionIdElement.textContent;
-                    const questionTitle = questionTitleElement.textContent;
-
-                    if (meeting && questionId && questionTitle) {
-                        document.getElementById('output').textContent = questionId + ". " + questionTitle;
-                    }
-                }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+        function refreshFrame() {
+            const frame = document.getElementById('questionFrame');
+            frame.src = frame.src;
         }
 
-        setInterval(fetchData, 1000);
+        setInterval(refreshFrame, 2000);
     </script>
 </body>
 </html>
