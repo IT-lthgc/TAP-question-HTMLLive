@@ -20,38 +20,17 @@
     </style>
 </head>
 <body>
-    <div id="output"></div>
-    <iframe id="questionFrame" src="https://divis-test.lrv.lt/meetingpage/questionInProgress?questionTitleMaxLen=179" onload="checkIframeContent()"></iframe>
+    <div id="output">
+        <iframe id="questionFrame" src="https://divis-test.lrv.lt/meetingpage/questionInProgress?questionTitleMaxLen=179"></iframe>
+    </div>
 
     <script>
-        let previousContent = '';
-
-        function checkIframeContent() {
-            const iframe = document.getElementById('questionFrame');
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-            const meetingElement = iframeDoc.getElementById('meeting');
-            const questionIdElement = iframeDoc.getElementById('questionId');
-            const questionTitleElement = iframeDoc.getElementById('questionTitle');
-
-            if (meetingElement && questionIdElement && questionTitleElement) {
-                const meeting = meetingElement.textContent;
-                const questionId = questionIdElement.textContent;
-                const questionTitle = questionTitleElement.textContent;
-
-                const currentContent = questionId + ". " + questionTitle;
-
-                if (currentContent !== previousContent) {
-                    previousContent = currentContent;
-                    document.getElementById('output').textContent = currentContent;
-                }
-            }
+        function refreshFrame() {
+            const frame = document.getElementById('questionFrame');
+            frame.src = frame.src;
         }
 
-        setInterval(() => {
-            const iframe = document.getElementById('questionFrame');
-            iframe.contentWindow.location.reload();
-        }, 2000);
+        setInterval(refreshFrame, 2000);
     </script>
 </body>
 </html>
